@@ -1,0 +1,484 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BiharNewsLiveDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="M_LocationMasters">
+          <Key>
+            <PropertyRef Name="LocationID" />
+          </Key>
+          <Property Name="LocationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryID" Type="int" Nullable="false" />
+          <Property Name="State" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Division" Type="nvarchar" MaxLength="255" />
+          <Property Name="Districts" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Blocks" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Remarks" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="M_MasterTables">
+          <Key>
+            <PropertyRef Name="MasterID" />
+          </Key>
+          <Property Name="MasterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MasterValue" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MasterTable" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="M_NewsCategoryMaster">
+          <Key>
+            <PropertyRef Name="NewsCategoryID" />
+          </Key>
+          <Property Name="NewsCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CategoryDesc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="M_NewsSubCategoryMaster">
+          <Key>
+            <PropertyRef Name="SubCategoryID" />
+          </Key>
+          <Property Name="SubCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="SubNewsCategory" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="SubNewsDesc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="M_UserMaster">
+          <Key>
+            <PropertyRef Name="RegistrationID" />
+          </Key>
+          <Property Name="RegistrationID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserType" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FatherName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MotherName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="LocationID" Type="int" Nullable="false" />
+          <Property Name="PinCode" Type="int" Nullable="false" />
+          <Property Name="EmailID" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ContactNo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CurrentCompany" Type="nvarchar(max)" />
+          <Property Name="PostAppliedFor" Type="int" Nullable="false" />
+          <Property Name="Validity" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsApprovedByAdmin" Type="bit" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_M_LocationMasters_M_MasterTables">
+          <End Role="M_MasterTables" Type="Self.M_MasterTables" Multiplicity="1" />
+          <End Role="M_LocationMasters" Type="Self.M_LocationMasters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_MasterTables">
+              <PropertyRef Name="MasterID" />
+            </Principal>
+            <Dependent Role="M_LocationMasters">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_NewsSubCategoryMaster_M_NewsCategoryMaster">
+          <End Role="M_NewsCategoryMaster" Type="Self.M_NewsCategoryMaster" Multiplicity="1" />
+          <End Role="M_NewsSubCategoryMaster" Type="Self.M_NewsSubCategoryMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_NewsCategoryMaster">
+              <PropertyRef Name="NewsCategoryID" />
+            </Principal>
+            <Dependent Role="M_NewsSubCategoryMaster">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_UserMaster_M_LocationMasters">
+          <End Role="M_LocationMasters" Type="Self.M_LocationMasters" Multiplicity="1" />
+          <End Role="M_UserMaster" Type="Self.M_UserMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_LocationMasters">
+              <PropertyRef Name="LocationID" />
+            </Principal>
+            <Dependent Role="M_UserMaster">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_UserMaster_M_MasterTables">
+          <End Role="M_MasterTables" Type="Self.M_MasterTables" Multiplicity="1" />
+          <End Role="M_UserMaster" Type="Self.M_UserMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_MasterTables">
+              <PropertyRef Name="MasterID" />
+            </Principal>
+            <Dependent Role="M_UserMaster">
+              <PropertyRef Name="UserType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_UserMaster_M_MasterTables1">
+          <End Role="M_MasterTables" Type="Self.M_MasterTables" Multiplicity="1" />
+          <End Role="M_UserMaster" Type="Self.M_UserMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_MasterTables">
+              <PropertyRef Name="MasterID" />
+            </Principal>
+            <Dependent Role="M_UserMaster">
+              <PropertyRef Name="PostAppliedFor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BiharNewsLiveDBModelStoreContainer">
+          <EntitySet Name="M_LocationMasters" EntityType="Self.M_LocationMasters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_MasterTables" EntityType="Self.M_MasterTables" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_NewsCategoryMaster" EntityType="Self.M_NewsCategoryMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_NewsSubCategoryMaster" EntityType="Self.M_NewsSubCategoryMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_UserMaster" EntityType="Self.M_UserMaster" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_M_LocationMasters_M_MasterTables" Association="Self.FK_M_LocationMasters_M_MasterTables">
+            <End Role="M_MasterTables" EntitySet="M_MasterTables" />
+            <End Role="M_LocationMasters" EntitySet="M_LocationMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_NewsSubCategoryMaster_M_NewsCategoryMaster" Association="Self.FK_M_NewsSubCategoryMaster_M_NewsCategoryMaster">
+            <End Role="M_NewsCategoryMaster" EntitySet="M_NewsCategoryMaster" />
+            <End Role="M_NewsSubCategoryMaster" EntitySet="M_NewsSubCategoryMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_UserMaster_M_LocationMasters" Association="Self.FK_M_UserMaster_M_LocationMasters">
+            <End Role="M_LocationMasters" EntitySet="M_LocationMasters" />
+            <End Role="M_UserMaster" EntitySet="M_UserMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_UserMaster_M_MasterTables" Association="Self.FK_M_UserMaster_M_MasterTables">
+            <End Role="M_MasterTables" EntitySet="M_MasterTables" />
+            <End Role="M_UserMaster" EntitySet="M_UserMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_UserMaster_M_MasterTables1" Association="Self.FK_M_UserMaster_M_MasterTables1">
+            <End Role="M_MasterTables" EntitySet="M_MasterTables" />
+            <End Role="M_UserMaster" EntitySet="M_UserMaster" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BiharNewsLiveDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="M_LocationMasters">
+          <Key>
+            <PropertyRef Name="LocationID" />
+          </Key>
+          <Property Name="LocationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryID" Type="Int32" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Division" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Districts" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Blocks" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="M_MasterTables" Relationship="Self.FK_M_LocationMasters_M_MasterTables" FromRole="M_LocationMasters" ToRole="M_MasterTables" />
+          <NavigationProperty Name="M_UserMaster" Relationship="Self.FK_M_UserMaster_M_LocationMasters" FromRole="M_LocationMasters" ToRole="M_UserMaster" />
+        </EntityType>
+        <EntityType Name="M_MasterTables">
+          <Key>
+            <PropertyRef Name="MasterID" />
+          </Key>
+          <Property Name="MasterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MasterValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MasterTable" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="M_LocationMasters" Relationship="Self.FK_M_LocationMasters_M_MasterTables" FromRole="M_MasterTables" ToRole="M_LocationMasters" />
+          <NavigationProperty Name="M_UserMaster" Relationship="Self.FK_M_UserMaster_M_MasterTables" FromRole="M_MasterTables" ToRole="M_UserMaster" />
+          <NavigationProperty Name="M_UserMaster1" Relationship="Self.FK_M_UserMaster_M_MasterTables1" FromRole="M_MasterTables" ToRole="M_UserMaster" />
+        </EntityType>
+        <EntityType Name="M_NewsCategoryMaster">
+          <Key>
+            <PropertyRef Name="NewsCategoryID" />
+          </Key>
+          <Property Name="NewsCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CategoryDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="M_NewsSubCategoryMaster" Relationship="Self.FK_M_NewsSubCategoryMaster_M_NewsCategoryMaster" FromRole="M_NewsCategoryMaster" ToRole="M_NewsSubCategoryMaster" />
+        </EntityType>
+        <EntityType Name="M_NewsSubCategoryMaster">
+          <Key>
+            <PropertyRef Name="SubCategoryID" />
+          </Key>
+          <Property Name="SubCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="SubNewsCategory" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SubNewsDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="M_NewsCategoryMaster" Relationship="Self.FK_M_NewsSubCategoryMaster_M_NewsCategoryMaster" FromRole="M_NewsSubCategoryMaster" ToRole="M_NewsCategoryMaster" />
+        </EntityType>
+        <EntityType Name="M_UserMaster">
+          <Key>
+            <PropertyRef Name="RegistrationID" />
+            <PropertyRef Name="UserType" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="FatherName" />
+            <PropertyRef Name="MotherName" />
+            <PropertyRef Name="LocationID" />
+            <PropertyRef Name="PinCode" />
+            <PropertyRef Name="EmailID" />
+            <PropertyRef Name="ContactNo" />
+            <PropertyRef Name="PostAppliedFor" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="ModifiedBy" />
+            <PropertyRef Name="ModifiedDate" />
+            <PropertyRef Name="Active" />
+          </Key>
+          <Property Name="RegistrationID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserType" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FatherName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MotherName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LocationID" Type="Int32" Nullable="false" />
+          <Property Name="PinCode" Type="Int32" Nullable="false" />
+          <Property Name="EmailID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContactNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CurrentCompany" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PostAppliedFor" Type="Int32" Nullable="false" />
+          <Property Name="Validity" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsApprovedByAdmin" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="M_LocationMasters" Relationship="Self.FK_M_UserMaster_M_LocationMasters" FromRole="M_UserMaster" ToRole="M_LocationMasters" />
+          <NavigationProperty Name="M_MasterTables" Relationship="Self.FK_M_UserMaster_M_MasterTables" FromRole="M_UserMaster" ToRole="M_MasterTables" />
+          <NavigationProperty Name="M_MasterTables1" Relationship="Self.FK_M_UserMaster_M_MasterTables1" FromRole="M_UserMaster" ToRole="M_MasterTables" />
+        </EntityType>
+        <Association Name="FK_M_LocationMasters_M_MasterTables">
+          <End Role="M_MasterTables" Type="Self.M_MasterTables" Multiplicity="1" />
+          <End Role="M_LocationMasters" Type="Self.M_LocationMasters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_MasterTables">
+              <PropertyRef Name="MasterID" />
+            </Principal>
+            <Dependent Role="M_LocationMasters">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_UserMaster_M_LocationMasters">
+          <End Role="M_LocationMasters" Type="Self.M_LocationMasters" Multiplicity="1" />
+          <End Role="M_UserMaster" Type="Self.M_UserMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_LocationMasters">
+              <PropertyRef Name="LocationID" />
+            </Principal>
+            <Dependent Role="M_UserMaster">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_UserMaster_M_MasterTables">
+          <End Role="M_MasterTables" Type="Self.M_MasterTables" Multiplicity="1" />
+          <End Role="M_UserMaster" Type="Self.M_UserMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_MasterTables">
+              <PropertyRef Name="MasterID" />
+            </Principal>
+            <Dependent Role="M_UserMaster">
+              <PropertyRef Name="UserType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_UserMaster_M_MasterTables1">
+          <End Role="M_MasterTables" Type="Self.M_MasterTables" Multiplicity="1" />
+          <End Role="M_UserMaster" Type="Self.M_UserMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_MasterTables">
+              <PropertyRef Name="MasterID" />
+            </Principal>
+            <Dependent Role="M_UserMaster">
+              <PropertyRef Name="PostAppliedFor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_NewsSubCategoryMaster_M_NewsCategoryMaster">
+          <End Role="M_NewsCategoryMaster" Type="Self.M_NewsCategoryMaster" Multiplicity="1" />
+          <End Role="M_NewsSubCategoryMaster" Type="Self.M_NewsSubCategoryMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_NewsCategoryMaster">
+              <PropertyRef Name="NewsCategoryID" />
+            </Principal>
+            <Dependent Role="M_NewsSubCategoryMaster">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BiharNewsLiveDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="M_LocationMasters" EntityType="Self.M_LocationMasters" />
+          <EntitySet Name="M_MasterTables" EntityType="Self.M_MasterTables" />
+          <EntitySet Name="M_NewsCategoryMaster" EntityType="Self.M_NewsCategoryMaster" />
+          <EntitySet Name="M_NewsSubCategoryMaster" EntityType="Self.M_NewsSubCategoryMaster" />
+          <EntitySet Name="M_UserMaster" EntityType="Self.M_UserMaster" />
+          <AssociationSet Name="FK_M_LocationMasters_M_MasterTables" Association="Self.FK_M_LocationMasters_M_MasterTables">
+            <End Role="M_MasterTables" EntitySet="M_MasterTables" />
+            <End Role="M_LocationMasters" EntitySet="M_LocationMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_UserMaster_M_LocationMasters" Association="Self.FK_M_UserMaster_M_LocationMasters">
+            <End Role="M_LocationMasters" EntitySet="M_LocationMasters" />
+            <End Role="M_UserMaster" EntitySet="M_UserMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_UserMaster_M_MasterTables" Association="Self.FK_M_UserMaster_M_MasterTables">
+            <End Role="M_MasterTables" EntitySet="M_MasterTables" />
+            <End Role="M_UserMaster" EntitySet="M_UserMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_UserMaster_M_MasterTables1" Association="Self.FK_M_UserMaster_M_MasterTables1">
+            <End Role="M_MasterTables" EntitySet="M_MasterTables" />
+            <End Role="M_UserMaster" EntitySet="M_UserMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_NewsSubCategoryMaster_M_NewsCategoryMaster" Association="Self.FK_M_NewsSubCategoryMaster_M_NewsCategoryMaster">
+            <End Role="M_NewsCategoryMaster" EntitySet="M_NewsCategoryMaster" />
+            <End Role="M_NewsSubCategoryMaster" EntitySet="M_NewsSubCategoryMaster" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BiharNewsLiveDBModelStoreContainer" CdmEntityContainer="BiharNewsLiveDBEntities">
+          <EntitySetMapping Name="M_LocationMasters">
+            <EntityTypeMapping TypeName="BiharNewsLiveDBModel.M_LocationMasters">
+              <MappingFragment StoreEntitySet="M_LocationMasters">
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Division" ColumnName="Division" />
+                <ScalarProperty Name="Districts" ColumnName="Districts" />
+                <ScalarProperty Name="Blocks" ColumnName="Blocks" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_MasterTables">
+            <EntityTypeMapping TypeName="BiharNewsLiveDBModel.M_MasterTables">
+              <MappingFragment StoreEntitySet="M_MasterTables">
+                <ScalarProperty Name="MasterID" ColumnName="MasterID" />
+                <ScalarProperty Name="MasterValue" ColumnName="MasterValue" />
+                <ScalarProperty Name="MasterTable" ColumnName="MasterTable" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_NewsCategoryMaster">
+            <EntityTypeMapping TypeName="BiharNewsLiveDBModel.M_NewsCategoryMaster">
+              <MappingFragment StoreEntitySet="M_NewsCategoryMaster">
+                <ScalarProperty Name="NewsCategoryID" ColumnName="NewsCategoryID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryDesc" ColumnName="CategoryDesc" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_NewsSubCategoryMaster">
+            <EntityTypeMapping TypeName="BiharNewsLiveDBModel.M_NewsSubCategoryMaster">
+              <MappingFragment StoreEntitySet="M_NewsSubCategoryMaster">
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="SubNewsCategory" ColumnName="SubNewsCategory" />
+                <ScalarProperty Name="SubNewsDesc" ColumnName="SubNewsDesc" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_UserMaster">
+            <EntityTypeMapping TypeName="BiharNewsLiveDBModel.M_UserMaster">
+              <MappingFragment StoreEntitySet="M_UserMaster">
+                <ScalarProperty Name="RegistrationID" ColumnName="RegistrationID" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="MotherName" ColumnName="MotherName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="CurrentCompany" ColumnName="CurrentCompany" />
+                <ScalarProperty Name="PostAppliedFor" ColumnName="PostAppliedFor" />
+                <ScalarProperty Name="Validity" ColumnName="Validity" />
+                <ScalarProperty Name="IsApprovedByAdmin" ColumnName="IsApprovedByAdmin" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
