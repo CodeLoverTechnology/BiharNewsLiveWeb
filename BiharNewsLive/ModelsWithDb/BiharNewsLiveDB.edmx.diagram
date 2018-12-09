@@ -9,12 +9,15 @@
         <EntityTypeShape EntityType="BiharNewsLiveDBModel.M_MasterTables" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BiharNewsLiveDBModel.M_NewsCategoryMaster" Width="1.5" PointX="7.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="BiharNewsLiveDBModel.M_NewsSubCategoryMaster" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="BiharNewsLiveDBModel.M_UserMaster" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
         <AssociationConnector Association="BiharNewsLiveDBModel.FK_M_LocationMasters_M_MasterTables" ManuallyRouted="false" />
-        <AssociationConnector Association="BiharNewsLiveDBModel.FK_M_UserMaster_M_LocationMasters" ManuallyRouted="false" />
-        <AssociationConnector Association="BiharNewsLiveDBModel.FK_M_UserMaster_M_MasterTables" ManuallyRouted="false" />
-        <AssociationConnector Association="BiharNewsLiveDBModel.FK_M_UserMaster_M_MasterTables1" ManuallyRouted="false" />
         <AssociationConnector Association="BiharNewsLiveDBModel.FK_M_NewsSubCategoryMaster_M_NewsCategoryMaster" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="BiharNewsLiveDBModel.T_NewsInfoTable" Width="1.5" PointX="12.25" PointY="0.75" />
+        <AssociationConnector Association="BiharNewsLiveDBModel.FK_T_NewsInfoTable_M_MasterTables" />
+        <AssociationConnector Association="BiharNewsLiveDBModel.FK_T_NewsInfoTable_M_NewsSubCategoryMaster" />
+        <EntityTypeShape EntityType="BiharNewsLiveDBModel.M_UserMaster" Width="1.5" PointX="5.25" PointY="1.125" />
+        <AssociationConnector Association="BiharNewsLiveDBModel.FK_M_UserMaster_M_LocationMasters" />
+        <AssociationConnector Association="BiharNewsLiveDBModel.FK_M_UserMaster_M_MasterTables" />
+        <AssociationConnector Association="BiharNewsLiveDBModel.FK_M_UserMaster_M_MasterTables1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

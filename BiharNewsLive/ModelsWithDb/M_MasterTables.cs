@@ -18,6 +18,7 @@ namespace BiharNewsLive.ModelsWithDb
         public M_MasterTables()
         {
             this.M_LocationMasters = new HashSet<M_LocationMasters>();
+            this.T_NewsInfoTable = new HashSet<T_NewsInfoTable>();
             this.M_UserMaster = new HashSet<M_UserMaster>();
             this.M_UserMaster1 = new HashSet<M_UserMaster>();
         }
@@ -31,6 +32,8 @@ namespace BiharNewsLive.ModelsWithDb
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M_LocationMasters> M_LocationMasters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<T_NewsInfoTable> T_NewsInfoTable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M_UserMaster> M_UserMaster { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

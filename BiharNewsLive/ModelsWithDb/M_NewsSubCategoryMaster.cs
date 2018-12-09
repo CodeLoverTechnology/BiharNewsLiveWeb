@@ -14,6 +14,12 @@ namespace BiharNewsLive.ModelsWithDb
     
     public partial class M_NewsSubCategoryMaster
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public M_NewsSubCategoryMaster()
+        {
+            this.T_NewsInfoTable = new HashSet<T_NewsInfoTable>();
+        }
+    
         public int SubCategoryID { get; set; }
         public int CategoryID { get; set; }
         public string SubNewsCategory { get; set; }
@@ -25,5 +31,7 @@ namespace BiharNewsLive.ModelsWithDb
         public bool Active { get; set; }
     
         public virtual M_NewsCategoryMaster M_NewsCategoryMaster { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<T_NewsInfoTable> T_NewsInfoTable { get; set; }
     }
 }

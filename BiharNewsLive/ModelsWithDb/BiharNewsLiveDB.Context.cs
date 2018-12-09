@@ -29,6 +29,7 @@ namespace BiharNewsLive.ModelsWithDb
         public virtual DbSet<M_MasterTables> M_MasterTables { get; set; }
         public virtual DbSet<M_NewsCategoryMaster> M_NewsCategoryMaster { get; set; }
         public virtual DbSet<M_NewsSubCategoryMaster> M_NewsSubCategoryMaster { get; set; }
+        public virtual DbSet<T_NewsInfoTable> T_NewsInfoTable { get; set; }
         public virtual DbSet<M_UserMaster> M_UserMaster { get; set; }
     }
 }
