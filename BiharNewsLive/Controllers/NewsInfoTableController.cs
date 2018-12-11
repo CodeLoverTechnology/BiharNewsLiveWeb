@@ -18,9 +18,41 @@ namespace BiharNewsLive.Controllers
         private BiharNewsLiveDBEntities db = new BiharNewsLiveDBEntities();
 
         // GET: api/NewsInfoTable
-        public IQueryable<T_NewsInfoTable> GetT_NewsInfoTable()
+        public IHttpActionResult GetT_NewsInfoTable()
         {
-            return db.T_NewsInfoTable;
+            IList<NewsModel> ObjNewsModelList = new List<NewsModel>();
+            var NewsCollection = from s in db.T_NewsInfoTable.OrderByDescending(x => x.ModifiedDate).Take(20) select s;
+            foreach(var news in NewsCollection)
+            {
+                ObjNewsModelList.Add(new NewsModel() {
+                    NewsID=news.NewsID,
+                    NewsTypeID = news.NewsType,
+                    NewsTypeName= news.M_MasterTables.MasterValue,
+                    NewsTitle = news.NewsTitle,
+                    HeadLine = news.HeadLine,
+                    NewsCategoryID = news.NewsSubCategoryID,
+                    NewsSubCategoryID =news.NewsSubCategoryID,
+                    NewsCategoryName=news.M_NewsSubCategoryMaster.M_NewsCategoryMaster.CategoryName,
+                    NewsSubCategoryName = news.M_NewsSubCategoryMaster.SubNewsCategory,
+                    HeadlineImagePath = news.HeadlineImagePath,
+                    Location = news.Location,
+                    NoOfView = news.NoOfView,
+                    NewsDescription = news.NewsDescription,
+                    Remarks = news.Remarks,
+                    Images1= news.Images1,
+                    Images2=news.Images2,
+                    Images3=news.Images3,
+                    Images4 = news.Images4,
+                    Images5= news.Images5,
+                    CreatedBy= news.CreatedBy,
+                    CreatedDate= news.CreatedDate,
+                    ModifiedDate= news.ModifiedDate,
+                    ModifiedBy=news.ModifiedBy,
+                    Active=news.Active
+
+                });
+            }
+            return Ok(ObjNewsModelList);
         }
 
         // GET: api/NewsInfoTable/5

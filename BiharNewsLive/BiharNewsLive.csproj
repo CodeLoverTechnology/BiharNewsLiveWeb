@@ -207,7 +207,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MasterTablesController.cs" />
+    <Compile Include="Controllers\M_LocationMastersController.cs" />
+    <Compile Include="Controllers\M_NewsCategoryMasterController.cs" />
+    <Compile Include="Controllers\M_NewsSubCategoryMasterController.cs" />
     <Compile Include="Controllers\NewsInfoTableController.cs" />
+    <Compile Include="Controllers\T_NewsInfoTableController.cs" />
     <Compile Include="Controllers\UserMasterController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -243,6 +247,7 @@
     <Compile Include="ModelsWithDb\M_UserMaster.cs">
       <DependentUpon>BiharNewsLiveDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModelsWithDb\NewsModel.cs" />
     <Compile Include="ModelsWithDb\T_NewsInfoTable.cs">
       <DependentUpon>BiharNewsLiveDB.tt</DependentUpon>
     </Compile>
@@ -372,6 +377,26 @@
     <Content Include="Views\MasterTables\Details.cshtml" />
     <Content Include="Views\MasterTables\Edit.cshtml" />
     <Content Include="Views\MasterTables\Index.cshtml" />
+    <Content Include="Views\T_NewsInfoTable\Create.cshtml" />
+    <Content Include="Views\T_NewsInfoTable\Delete.cshtml" />
+    <Content Include="Views\T_NewsInfoTable\Details.cshtml" />
+    <Content Include="Views\T_NewsInfoTable\Edit.cshtml" />
+    <Content Include="Views\T_NewsInfoTable\Index.cshtml" />
+    <Content Include="Views\M_NewsCategoryMaster\Create.cshtml" />
+    <Content Include="Views\M_NewsCategoryMaster\Delete.cshtml" />
+    <Content Include="Views\M_NewsCategoryMaster\Details.cshtml" />
+    <Content Include="Views\M_NewsCategoryMaster\Edit.cshtml" />
+    <Content Include="Views\M_NewsCategoryMaster\Index.cshtml" />
+    <Content Include="Views\M_NewsSubCategoryMaster\Create.cshtml" />
+    <Content Include="Views\M_NewsSubCategoryMaster\Delete.cshtml" />
+    <Content Include="Views\M_NewsSubCategoryMaster\Details.cshtml" />
+    <Content Include="Views\M_NewsSubCategoryMaster\Edit.cshtml" />
+    <Content Include="Views\M_NewsSubCategoryMaster\Index.cshtml" />
+    <Content Include="Views\M_LocationMasters\Create.cshtml" />
+    <Content Include="Views\M_LocationMasters\Delete.cshtml" />
+    <Content Include="Views\M_LocationMasters\Details.cshtml" />
+    <Content Include="Views\M_LocationMasters\Edit.cshtml" />
+    <Content Include="Views\M_LocationMasters\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

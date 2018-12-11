@@ -1,0 +1,83 @@
+﻿@model BiharNewsLive.ModelsWithDb.M_NewsSubCategoryMaster
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>M_NewsSubCategoryMaster</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SubNewsCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubNewsCategory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubNewsDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubNewsDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.M_NewsCategoryMaster.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.M_NewsCategoryMaster.CategoryName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SubCategoryID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

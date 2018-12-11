@@ -1,0 +1,142 @@
+﻿@model IEnumerable<BiharNewsLive.ModelsWithDb.T_NewsInfoTable>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NewsTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HeadlineImagePath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HeadLine)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NewsDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Images1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Images2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Images3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Images4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Images5)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoOfView)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifiedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.M_MasterTables.MasterValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.M_NewsSubCategoryMaster.SubNewsCategory)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NewsTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HeadlineImagePath)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HeadLine)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NewsDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Images1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Images2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Images3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Images4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Images5)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoOfView)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remarks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModifiedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModifiedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Active)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.M_MasterTables.MasterValue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.M_NewsSubCategoryMaster.SubNewsCategory)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.NewsID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.NewsID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.NewsID })
+        </td>
+    </tr>
+}
+
+</table>

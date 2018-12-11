@@ -21,6 +21,11 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Master", "Index", "MasterTables", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Location", "Index", "M_LocationMasters", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("NewsCategory", "Index", "M_NewsCategoryMaster", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("NewsSubCategory", "Index", "M_NewsSubCategoryMaster", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("News", "Index", "T_NewsInfoTable", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
                 </ul>
             </div>
